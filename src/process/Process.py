@@ -8,39 +8,9 @@ import re
 import math
 from scipy.signal.windows import cosine
 from domain.Singleton import Singleton_Instance
+from process.ReadWrite import Read
+from process.ReadWrite import Write
 model = Singleton_Instance.model_Instance
-class Read(object):
-    '''
-    classdocs
-    '''     
-    def __init__(self, file):         
-        '''
-        Constructor
-        '''
-        self.file = file
-        
-    def read(self):
-        file_object = open(self.file, 'r', encoding='utf-8')
-        all_lines = file_object.read()
-        file_object.close()
-        return all_lines.split('\n')
-class Write(object):
-    def __init__(self, file):
-        self.file = file
-        self.file_object = open(self.file, 'w+', encoding='utf-8')
-        
-    def write(self, lines,id):
-        if len(lines)>1:
-            line = re.sub(r'[\[\]]', '', str(lines[0]))
-            self.file_object.write(str(id)+'##'+line + '\n')
-        else:
-            self.file_object.write(str(id)+'##'+str(lines) + '\n')
-                
-    def writeLines(self, lines,ids):
-        for i in range(len(lines)):
-            self.write(lines[i],ids[i])
-    def __del__(self):
-        self.file_object.close()
 
 class Process(object):
     def getAllTitles(self, all_lines):
@@ -123,7 +93,10 @@ class Similty(object):
         for i in range(len(keyValue)):
             dic[keyValue[i]:str(i)]
         return sorted(dic.items(), key=lambda asd:asd[0], reverse=True)
+    def cosineWords(self, value1, value2):
         
+        
+        return 0.8
         
         
          
@@ -134,15 +107,12 @@ class Similty(object):
 # Write('./data').write(vv)
 
 # model = Si
-
-        
     
 # ques = Process(all_lines).getTitle()
 # print(ques)
 
 # for i in range(1,len(all_lines),9):
 #     print(all_lines[i])
-
 
 
 

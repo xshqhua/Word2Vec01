@@ -6,6 +6,7 @@ Created on 2016年10月11日
 '''
 from gensim.models import Word2Vec;
 from scipy.stats.mstats_basic import mode
+import nltk
 class Singleton(object):  
     def __new__(cls, *args, **kw):  
         if not hasattr(cls, '_instance'):  
@@ -15,7 +16,9 @@ class Singleton(object):
     
 class Singleton_Instance(Singleton):
     model_Instance = Word2Vec.load_word2vec_format('E:\\wordvectors\\EN.glove.6B.300d.bin', binary=True);
-
+    nk = nltk
+# class Label_Question_id(Singleton):
+    
 # model = Singleton_Instance.model_Instance
 # v = model['test']
 # print(v)
